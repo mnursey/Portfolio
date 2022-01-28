@@ -1,0 +1,938 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Mitchell Nursey</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body class="is-preload">
+
+		<!-- Header -->
+			<header id="header">
+				<div class="inner">
+					<a href="#" class="image avatar"><img src="images/me.jpg" alt="" /></a>
+					<h1><strong><a href="index.html" style="border-bottom: 0px;">Mitchell Nursey</a></strong> : { Programming,<br />
+					Computer Science, Game Development,<br />
+					Artificial Intelligence }
+					</h1>
+				</div>
+			</header>
+
+		<!-- Main -->
+			<div id="main">
+
+				<!-- One -->
+					<section id="one">
+						<header class="major">
+							<h2>Kart Acceleration Calculator</h2>
+                            <p>
+                                (LO206)<br>
+                                Work In Progress - Please reachout to me if you have a suggestion or edit.
+                            </p>
+						</header>
+
+					</section>
+
+                    <section id="report">
+                        
+                        <h2>Motivation</h2>
+                            <p>
+                                The purpose of this calculator is to determine how engine gearing, setup, weight, and initial speed effect the time required to travel straight line distance.
+                                Having a rough estimate of how weight and gearing affect a kart's forward acceleration provide useful insight.
+                            </p>
+
+                        <h2>Method</h2>
+
+                            <p>
+                                I've created this calculator using the LO206 Briggs & Stratton <a href="./206_data.pdf" target="_blank">data found here</a>. The torque curve data has a small sample size, and a limited amount of data points.
+                                For this reason I <a href="https://en.wikipedia.org/wiki/Linear_interpolation" target="_blank">linearly interpolated</a> the LO206 torque curve to approximate values between undefined RPM ranges.
+                                I used <a href="https://en.wikipedia.org/wiki/Euler_method" target="_blank">euler integration</a> to approximate the acceleration curve over time. 
+                                I derived the equation for engine acceleration to be: <br>
+                                <pre><code>
+a = (t * gr * 1.3358) / (m * wr)
+
+where
+a = acceleration (m/s^2)
+t = torque (in ft-lbs)
+gr = gear ratio = axle gear / clutch gear
+m = mass (kg)
+wr = wheel radius (m)
+
+1.3358 is used to convert ft-lbs to newton meters
+                                </code></pre>
+                                
+                            </p>
+
+                        <h2>Limitations</h2>
+                            <p>
+                                Unfortunately, the calculator only provides an approximate output, and may not reflect real world performance. This is the consequence of a lack of data and precise calculation. 
+                                First, the Briggs & Stratton data used for interpolating the engine torque curves only has a handful of data points.
+                                Second, the calculator does not account for altitude, air density, or other parameters which may affect engine performance.
+                                Third, this implementation of the calculator does not account for elevation changes.
+                                Fourth, the calculator does not handle linear resistance, although this may be negligible.
+                                Fifth, we do not account for tire grip, expansion, stretching, or any other parameters.
+                                In theory, we can account for all of these factors in future revisions of this calculator.
+                            </p>
+                            <p>
+                                Although these factors may seem limiting, the calculator still provides useful insight on how a kart may accelerate.
+                            </p>
+                            <p>
+                                If anyone has any data, knowledge, or found a significant inaccuracy, please do not hesitate to reachout to me.
+                            </p>
+                            
+                        <h2>VIMC Analysis</h2>
+                        <p>
+                            I wanted to find how weight differences affect the time required to travel down the main straight at <a href="https://islandmotorsportcircuit.com/" target="_blank">VIMC (Vancouver Island Motorsport Circuit)</a> at race speeds.
+                            I found my initial speed coming on to the straight to be ~14 m/s. I found this number by observing video data and comparing it with a Google Maps view of the circuit. 
+                            <div class="box alt">
+								<div class="row gtr-50 gtr-uniform">
+									<div class="col-12"><span class="image fit"><img src="images/vimc_initial_speed.png" alt="" style="max-height:300px; object-fit: cover;"></span></div>
+								</div>
+							</div>    
+                            Using Google Maps I found VIMC to be about ~375 meters long. 
+                            <div class="box alt">
+								<div class="row gtr-50 gtr-uniform">
+									<div class="col-12"><span class="image fit"><img src="images/vimc_straight.png" alt="" style="max-height:300px; object-fit: cover;"></span></div>
+								</div>
+							</div>
+
+                            I used a gear ratio of 52 / 16, black carburetor slide, wheel radius of 0.1384m, and a drag coefficient of 0.1.
+                            The drag coefficient isn't based on any hard numbers or data. I used 0.1 because it matched my video data (it could be way off).
+
+                            <br><br>
+                            Results: 
+                            <br>
+                            Kart weight of 163.293 kg takes 15.75 seconds to travel 375 meters. <br>
+                            Kart weight of 149.685 kg takes 15.59 seconds to travel 375 meters. <br>
+                            <br>
+                            <br>
+                            That is about a 0.16 second difference it takes to travel the main straight of VIMC.
+                            <br>
+                            <br>
+                            Why does this happen? Because: Force = Mass * Acceleration.<br> Rearranged: Acceleration = Force / Mass.<br> Increase mass -> decrease acceleration -> heavier the kart, longer it takes to reach top speed.<br><br>
+                            This also means two karts traveling at the same top speed with different weight will travel the same amount of distance over a period of time. In this situation we can ignore drag, since we're limited by the RPM and gearing, not engine power and air resistance.
+                            <br>
+                            <br>
+                            <br>
+
+                            Note: We're not accounting for VIMC elevation changes.
+                        </p>
+
+					</section>
+
+				<!-- Two -->
+					<section id="two">
+						<h2>Calculator</h2>
+
+                        <select name="slide" id="carbSlide">
+                            <option value="Black">Black</option>
+                            <option value="Yellow">Yellow</option>
+                            <option value="Blue">Blue</option>
+                            <option value="Green">Green</option>
+                            <option value="Red">Red</option>
+                        </select>
+                        <label for="carbSlide">Carburetor Slide</label>
+
+                        <input type="number" min="40" max="80" value="52" id="axleGear">
+                        <label for="axleGear">Axle Gear</label> 
+                
+                        <input type="number" min="10" max="20" value="16" id="clutchGear">
+                        <label for="clutchGear">Clutch Gear</label>
+                
+                        <input type="number" min="1" max="500" step='0.5' value="163.293" id="mass">
+                        <label for="mass">Kart Weight (kg)</label>
+                
+                        <input type="number" min="0" max="1040" step='0.5' value="375" id="distance">
+                        <label for="distance">Distance (m)</label>
+                
+                        <input type="number" min="0" max="500" step='0.1' value="14" id="v0">
+                        <label for="v0">Initial Speed (m/s)</label>
+                
+                        <input type="number" min="0" max="0.5" step='0.0001' value="0.1384" id="wheelRadius">
+                        <label for="wheelRadius">Wheel Radius (m)</label>
+                
+                        <input type="number" min="-2" max="0" step='0.02' value="-0.1" id="dragConstant">
+                        <label for="dragConstant">Drag Coefficient</label>
+                                
+                        <input id="evaluateButton" type="submit" value="Evaluate" />
+                        <br>
+                        <br>
+                
+                        <div id="results" style="display: none;">
+                            <h3>Results</h3>
+                            <table>
+                                <tr>
+                                    <th>Traveled</th>
+                                    <th>Seconds</th>
+                                    <th>Top Speed (m/s)</th>
+                                    <th>Top Speed (k/h)</th>
+                                </tr>     
+                                <tr>
+                                    <td id="outputDistance"></td>
+                                    <td id="outputTime"></td>
+                                    <td id="outputTopSpeedMS"></td>
+                                    <td id="outputTopSpeedKH"></td>
+                                  </tr>  
+                            </table>
+                
+                            
+                            <br>
+                            <br>
+                
+                            <h3>Graphs</h3>
+                                <p>
+                                    Note: The graphs may not display correctly on mobile devices.
+                                </p>
+                                <div id="graphs">
+                                </div>
+                        </div>
+
+					</section>
+
+				<!-- Three -->
+					<section id="three">
+						<h2>Get In Touch</h2>
+						<!--<p>Accumsan pellentesque commodo blandit enim arcu non at amet id arcu magna. Accumsan orci faucibus id eu lorem semper nunc nisi lorem vulputate lorem neque lorem ipsum dolor.</p>-->
+						<div class="row">
+							<div class="col-8 col-12-small">
+									<div class="row gtr-uniform gtr-50">
+										<div class="col-6 col-12-xsmall"><input type="text" name="name" id="name" placeholder="Name" /></div>
+										<div class="col-6 col-12-xsmall"><input type="email" name="email" id="email" placeholder="Email" /></div>
+										<div class="col-12"><textarea name="message" id="message" placeholder="Message" rows="4"></textarea></div>
+									</div>
+								<ul class="actions" style="margin-top: 24px;">
+									<li><input onclick="sendContactMessage();" id="send-button" type="submit" value="Send Message" /></li>
+								</ul>
+							</div>
+							<div class="col-4 col-12-small">
+								<ul class="labeled-icons">
+									<li>
+										<h3 class="icon solid fa-home"><span class="label">Address</span></h3>
+										Victoria,<br />
+										British Columbia,<br />
+										Canada
+									</li>
+									<li>
+										<h3 class="icon solid fa-mobile-alt"><span class="label">Phone</span></h3>
+										0x956BB1D9
+									</li>
+									<li>
+										<h3 class="icon solid fa-envelope"><span class="label">Email</span></h3>
+										<a href="mailto:mitchnursey@gmail.com">mitchnursey@gmail.com</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</section>
+
+				<!-- Four -->
+				<!--
+					<section id="four">
+						<h2>Elements</h2>
+
+						<section>
+							<h4>Text</h4>
+							<p>This is <b>bold</b> and this is <strong>strong</strong>. This is <i>italic</i> and this is <em>emphasized</em>.
+							This is <sup>superscript</sup> text and this is <sub>subscript</sub> text.
+							This is <u>underlined</u> and this is code: <code>for (;;) { ... }</code>. Finally, <a href="#">this is a link</a>.</p>
+							<hr />
+							<header>
+								<h4>Heading with a Subtitle</h4>
+								<p>Lorem ipsum dolor sit amet nullam id egestas urna aliquam</p>
+							</header>
+							<p>Nunc lacinia ante nunc ac lobortis. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus ornare mi ut ante amet placerat aliquet. Volutpat eu sed ante lacinia sapien lorem accumsan varius montes viverra nibh in adipiscing blandit tempus accumsan.</p>
+							<header>
+								<h5>Heading with a Subtitle</h5>
+								<p>Lorem ipsum dolor sit amet nullam id egestas urna aliquam</p>
+							</header>
+							<p>Nunc lacinia ante nunc ac lobortis. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus ornare mi ut ante amet placerat aliquet. Volutpat eu sed ante lacinia sapien lorem accumsan varius montes viverra nibh in adipiscing blandit tempus accumsan.</p>
+							<hr />
+							<h2>Heading Level 2</h2>
+							<h3>Heading Level 3</h3>
+							<h4>Heading Level 4</h4>
+							<h5>Heading Level 5</h5>
+							<h6>Heading Level 6</h6>
+							<hr />
+							<h5>Blockquote</h5>
+							<blockquote>Fringilla nisl. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan faucibus. Vestibulum ante ipsum primis in faucibus lorem ipsum dolor sit amet nullam adipiscing eu felis.</blockquote>
+							<h5>Preformatted</h5>
+							<pre><code>i = 0;
+
+while (!deck.isInOrder()) {
+print 'Iteration ' + i;
+deck.shuffle();
+i++;
+}
+
+print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
+						</section>
+
+						<section>
+							<h4>Lists</h4>
+							<div class="row">
+								<div class="col-6 col-12-xsmall">
+									<h5>Unordered</h5>
+									<ul>
+										<li>Dolor pulvinar etiam magna etiam.</li>
+										<li>Sagittis adipiscing lorem eleifend.</li>
+										<li>Felis enim feugiat dolore viverra.</li>
+									</ul>
+									<h5>Alternate</h5>
+									<ul class="alt">
+										<li>Dolor pulvinar etiam magna etiam.</li>
+										<li>Sagittis adipiscing lorem eleifend.</li>
+										<li>Felis enim feugiat dolore viverra.</li>
+									</ul>
+								</div>
+								<div class="col-6 col-12-xsmall">
+									<h5>Ordered</h5>
+									<ol>
+										<li>Dolor pulvinar etiam magna etiam.</li>
+										<li>Etiam vel felis at lorem sed viverra.</li>
+										<li>Felis enim feugiat dolore viverra.</li>
+										<li>Dolor pulvinar etiam magna etiam.</li>
+										<li>Etiam vel felis at lorem sed viverra.</li>
+										<li>Felis enim feugiat dolore viverra.</li>
+									</ol>
+									<h5>Icons</h5>
+									<ul class="icons">
+										<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+										<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+										<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+										<li><a href="#" class="icon brands fa-github"><span class="label">Github</span></a></li>
+										<li><a href="#" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a></li>
+										<li><a href="#" class="icon brands fa-tumblr"><span class="label">Tumblr</span></a></li>
+									</ul>
+								</div>
+							</div>
+							<h5>Actions</h5>
+							<ul class="actions">
+								<li><a href="#" class="button primary">Default</a></li>
+								<li><a href="#" class="button">Default</a></li>
+							</ul>
+							<ul class="actions small">
+								<li><a href="#" class="button primary small">Small</a></li>
+								<li><a href="#" class="button small">Small</a></li>
+							</ul>
+							<div class="row">
+								<div class="col-6 col-12-small">
+									<ul class="actions stacked">
+										<li><a href="#" class="button primary">Default</a></li>
+										<li><a href="#" class="button">Default</a></li>
+									</ul>
+								</div>
+								<div class="col-6 col-12-small">
+									<ul class="actions stacked">
+										<li><a href="#" class="button primary small">Small</a></li>
+										<li><a href="#" class="button small">Small</a></li>
+									</ul>
+								</div>
+								<div class="col-6 col-12-small">
+									<ul class="actions stacked">
+										<li><a href="#" class="button primary fit">Default</a></li>
+										<li><a href="#" class="button fit">Default</a></li>
+									</ul>
+								</div>
+								<div class="col-6 col-12-small">
+									<ul class="actions stacked">
+										<li><a href="#" class="button primary small fit">Small</a></li>
+										<li><a href="#" class="button small fit">Small</a></li>
+									</ul>
+								</div>
+							</div>
+						</section>
+
+						<section>
+							<h4>Table</h4>
+							<h5>Default</h5>
+							<div class="table-wrapper">
+								<table>
+									<thead>
+										<tr>
+											<th>Name</th>
+											<th>Description</th>
+											<th>Price</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>Item One</td>
+											<td>Ante turpis integer aliquet porttitor.</td>
+											<td>29.99</td>
+										</tr>
+										<tr>
+											<td>Item Two</td>
+											<td>Vis ac commodo adipiscing arcu aliquet.</td>
+											<td>19.99</td>
+										</tr>
+										<tr>
+											<td>Item Three</td>
+											<td> Morbi faucibus arcu accumsan lorem.</td>
+											<td>29.99</td>
+										</tr>
+										<tr>
+											<td>Item Four</td>
+											<td>Vitae integer tempus condimentum.</td>
+											<td>19.99</td>
+										</tr>
+										<tr>
+											<td>Item Five</td>
+											<td>Ante turpis integer aliquet porttitor.</td>
+											<td>29.99</td>
+										</tr>
+									</tbody>
+									<tfoot>
+										<tr>
+											<td colspan="2"></td>
+											<td>100.00</td>
+										</tr>
+									</tfoot>
+								</table>
+							</div>
+
+							<h5>Alternate</h5>
+							<div class="table-wrapper">
+								<table class="alt">
+									<thead>
+										<tr>
+											<th>Name</th>
+											<th>Description</th>
+											<th>Price</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>Item One</td>
+											<td>Ante turpis integer aliquet porttitor.</td>
+											<td>29.99</td>
+										</tr>
+										<tr>
+											<td>Item Two</td>
+											<td>Vis ac commodo adipiscing arcu aliquet.</td>
+											<td>19.99</td>
+										</tr>
+										<tr>
+											<td>Item Three</td>
+											<td> Morbi faucibus arcu accumsan lorem.</td>
+											<td>29.99</td>
+										</tr>
+										<tr>
+											<td>Item Four</td>
+											<td>Vitae integer tempus condimentum.</td>
+											<td>19.99</td>
+										</tr>
+										<tr>
+											<td>Item Five</td>
+											<td>Ante turpis integer aliquet porttitor.</td>
+											<td>29.99</td>
+										</tr>
+									</tbody>
+									<tfoot>
+										<tr>
+											<td colspan="2"></td>
+											<td>100.00</td>
+										</tr>
+									</tfoot>
+								</table>
+							</div>
+						</section>
+
+						<section>
+							<h4>Buttons</h4>
+							<ul class="actions">
+								<li><a href="#" class="button primary">Primary</a></li>
+								<li><a href="#" class="button">Default</a></li>
+							</ul>
+							<ul class="actions">
+								<li><a href="#" class="button large">Large</a></li>
+								<li><a href="#" class="button">Default</a></li>
+								<li><a href="#" class="button small">Small</a></li>
+							</ul>
+							<ul class="actions fit">
+								<li><a href="#" class="button primary fit">Fit</a></li>
+								<li><a href="#" class="button fit">Fit</a></li>
+							</ul>
+							<ul class="actions fit small">
+								<li><a href="#" class="button primary fit small">Fit + Small</a></li>
+								<li><a href="#" class="button fit small">Fit + Small</a></li>
+							</ul>
+							<ul class="actions">
+								<li><a href="#" class="button primary icon solid fa-download">Icon</a></li>
+								<li><a href="#" class="button icon solid fa-download">Icon</a></li>
+							</ul>
+							<ul class="actions">
+								<li><span class="button primary disabled">Primary</span></li>
+								<li><span class="button disabled">Default</span></li>
+							</ul>
+						</section>
+
+						<section>
+							<h4>Form</h4>
+							<form method="post" action="#">
+								<div class="row gtr-uniform gtr-50">
+									<div class="col-6 col-12-xsmall">
+										<input type="text" name="demo-name" id="demo-name" value="" placeholder="Name" />
+									</div>
+									<div class="col-6 col-12-xsmall">
+										<input type="email" name="demo-email" id="demo-email" value="" placeholder="Email" />
+									</div>
+									<div class="col-12">
+										<select name="demo-category" id="demo-category">
+											<option value="">- Category -</option>
+											<option value="1">Manufacturing</option>
+											<option value="1">Shipping</option>
+											<option value="1">Administration</option>
+											<option value="1">Human Resources</option>
+										</select>
+									</div>
+									<div class="col-4 col-12-small">
+										<input type="radio" id="demo-priority-low" name="demo-priority" checked>
+										<label for="demo-priority-low">Low Priority</label>
+									</div>
+									<div class="col-4 col-12-small">
+										<input type="radio" id="demo-priority-normal" name="demo-priority">
+										<label for="demo-priority-normal">Normal Priority</label>
+									</div>
+									<div class="col-4 col-12-small">
+										<input type="radio" id="demo-priority-high" name="demo-priority">
+										<label for="demo-priority-high">High Priority</label>
+									</div>
+									<div class="col-6 col-12-small">
+										<input type="checkbox" id="demo-copy" name="demo-copy">
+										<label for="demo-copy">Email me a copy of this message</label>
+									</div>
+									<div class="col-6 col-12-small">
+										<input type="checkbox" id="demo-human" name="demo-human" checked>
+										<label for="demo-human">I am a human and not a robot</label>
+									</div>
+									<div class="col-12">
+										<textarea name="demo-message" id="demo-message" placeholder="Enter your message" rows="6"></textarea>
+									</div>
+									<div class="col-12">
+										<ul class="actions">
+											<li><input type="submit" value="Send Message" class="primary" /></li>
+											<li><input type="reset" value="Reset" /></li>
+										</ul>
+									</div>
+								</div>
+							</form>
+						</section>
+
+						<section>
+							<h4>Image</h4>
+							<h5>Fit</h5>
+							<div class="box alt">
+								<div class="row gtr-50 gtr-uniform">
+									<div class="col-12"><span class="image fit"><img src="images/fulls/05.jpg" alt="" /></span></div>
+									<div class="col-4"><span class="image fit"><img src="images/thumbs/01.jpg" alt="" /></span></div>
+									<div class="col-4"><span class="image fit"><img src="images/thumbs/02.jpg" alt="" /></span></div>
+									<div class="col-4"><span class="image fit"><img src="images/thumbs/03.jpg" alt="" /></span></div>
+									<div class="col-4"><span class="image fit"><img src="images/thumbs/04.jpg" alt="" /></span></div>
+									<div class="col-4"><span class="image fit"><img src="images/thumbs/05.jpg" alt="" /></span></div>
+									<div class="col-4"><span class="image fit"><img src="images/thumbs/06.jpg" alt="" /></span></div>
+									<div class="col-4"><span class="image fit"><img src="images/thumbs/03.jpg" alt="" /></span></div>
+									<div class="col-4"><span class="image fit"><img src="images/thumbs/02.jpg" alt="" /></span></div>
+									<div class="col-4"><span class="image fit"><img src="images/thumbs/01.jpg" alt="" /></span></div>
+								</div>
+							</div>
+							<h5>Left &amp; Right</h5>
+							<p><span class="image left"><img src="images/avatar.jpg" alt="" /></span>Fringilla nisl. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent.</p>
+							<p><span class="image right"><img src="images/avatar.jpg" alt="" /></span>Fringilla nisl. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent.</p>
+						</section>
+
+					</section>-->
+				
+
+			</div>
+
+		<!-- Footer -->
+			<footer id="footer">
+				<div class="inner">
+					<ul class="icons">
+						<li><a href="https://twitter.com/mitchnursey" class="icon brands fa-twitter" target="_blank"><span class="label">Twitter</span></a></li>
+						<li><a href="https://github.com/mnursey" class="icon brands fa-github" target="_blank"><span class="label">Github</span></a></li>
+						<!--<li><a href="#" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a></li>-->
+						<li><a href="mailto:mitchnursey@gmail.com" class="icon solid fa-envelope" target="_blank"><span class="label">Email</span></a></li>
+					</ul>
+					<ul class="copyright">
+						<li>Mitchell Nursey 2022 &copy; </li>
+					</ul>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.poptrox.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+			<!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
+
+			<!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+			<script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-app.js"></script>
+
+			<!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+			<script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-analytics.js"></script>
+
+			<!-- Add Firebase products that you want to use -->
+			<script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-auth.js"></script>
+			<script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-firestore.js"></script>
+
+			<script>
+
+				// Import the functions you need from the SDKs you need
+				//import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+				//import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-analytics.js";
+				//import { firestore } from "https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js";
+
+				// TODO: Add SDKs for Firebase products that you want to use
+				// https://firebase.google.com/docs/web/setup#available-libraries
+
+				// Your web app's Firebase configuration
+				// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+				const firebaseConfig = {
+					apiKey: "AIzaSyAIZS44jNWIFGO4Dex6fe3AryepEIVihRc",
+					authDomain: "jsform2mail.firebaseapp.com",
+					projectId: "jsform2mail",
+					storageBucket: "jsform2mail.appspot.com",
+					messagingSenderId: "27543160639",
+					appId: "1:27543160639:web:fbbde6690315ceef29f58a",
+					measurementId: "G-3X4H4KH79V"
+				};
+
+				// Initialize Firebase
+				firebase.initializeApp(firebaseConfig);
+
+				const auth = firebase.auth();
+				const db = firebase.firestore();
+
+				// Initialize Firebase
+				//const app = initializeApp(firebaseConfig);
+				//const analytics = getAnalytics(app);
+       			//const db = firestore(app);
+
+				function sendContactMessage() {
+
+					let name = document.getElementById("name").value;
+					let email = document.getElementById("email").value;
+					let message = document.getElementById("message").value;
+
+					message = name + "\n" + email + "\n\n\n" + message;
+
+					db.collection("mail").doc().set({
+						to: ["mitchnursey@gmail.com"],
+						message : {
+							subject : "Portfolio, message from " + name,
+							text : message
+						}
+					})
+					.then(() => {
+						console.log("Contact message successfully written!");
+					})
+					.catch((error) => {
+						console.error("Error writing message: ", error);
+					});
+
+					document.getElementById("send-button").value = "Message sent";
+					document.getElementById("send-button").disabled = true;
+				}
+
+			</script>
+
+            <script type="module">
+                    
+                // imports
+                import * as d3 from "https://cdn.skypack.dev/d3@7";
+                import * as Plot from "https://cdn.skypack.dev/@observablehq/plot@0.4";
+
+                //const div = d3.selectAll("div");
+
+                let dataOverTime = [];
+
+                // Parameters
+                let mass = 163.293; // kg
+                //163.293 kg is 360 pounds
+
+                mass = 149.685; // my karts current weight ~330 kg
+
+                let targetDistance = 375; // meters
+
+                let delta = 0.0001; // seconds
+
+                let clutchGear = 16;
+                let axleGear = 52;
+                let wheelRadius = 0.1384; // meters 
+                let initialVelocity = 14; // meters per second
+                // 0.127 meters is 5 inches
+
+                let dragConstant = -0.1; // 0.9 to 0.1 could be an ideal number
+
+                //Maps RPM -> Torque using linear interpolation
+                let torqueCurvePointsBlack = [ 
+                    [-999999 , 0], // used to create flat line
+                    [0    , 8.8], // used for low rpm / stall speeds. Remember we have a clutch. so this should be okay.
+                    [2500 , 8.8],
+                    [3000 , 9.65],
+                    [3500 , 9.82],
+                    [4000 , 9.76],
+                    [4500 , 9.51],
+                    [5000 , 9.08],
+                    [5500 , 8.45],
+                    [6000 , 7.51],
+                    [6100 , 7.51],
+                    [6110 , 0],   // used for high rpm / rev limitter
+                    [999999 , 0], // used to create flat line
+                ];
+
+                let torqueCurvePointsYellow = [
+                    [-999999 , 0], // used to create flat line
+                    [0    , 7.80], // used for low rpm / stall speeds. Remember we have a clutch. so this should be okay.
+                    [2500 , 7.80],
+                    [3000 , 8.60],
+                    [3500 , 8.60],
+                    [4000 , 8.10],
+                    [4500 , 7.70],
+                    [5000 , 7.20],
+                    [5500 , 6.40],
+                    [6000 , 5.70],
+                    [6100 , 5.70],
+                    [6110 , 0],   // used for high rpm / rev limitter
+                    [999999 , 0], // used to create flat line
+                ];
+
+                let torqueCurvePointsBlue = [ 
+                    [-999999 , 0], // used to create flat line
+                    [0    , 9.06], // used for low rpm / stall speeds. Remember we have a clutch. so this should be okay.
+                    [2500 , 9.06],
+                    [3000 , 9.39],
+                    [3500 , 8.94],
+                    [4000 , 8.19],
+                    [4500 , 7.38],
+                    [5000 , 6.62],
+                    [5500 , 5.37],
+                    [6000 , 4.96],
+                    [6100 , 4.96],
+                    [6110 , 0],   // used for high rpm / rev limitter
+                    [999999 , 0], // used to create flat line
+                ];
+
+                let torqueCurvePointsGreen = [ 
+                    [-999999 , 0], // used to create flat line
+                    [0    , 7.50], // used for low rpm / stall speeds. Remember we have a clutch. so this should be okay.
+                    [2500 , 7.50],
+                    [3000 , 7.75],
+                    [3500 , 7.90],
+                    [4000 , 7.30],
+                    [4500 , 6.80],
+                    [5000 , 6.30],
+                    [5500 , 5.40],
+                    [6000 , 4.70],
+                    [6100 , 4.70],
+                    [6110 , 0],   // used for high rpm / rev limitter
+                    [999999 , 0], // used to create flat line
+                ];
+
+                let torqueCurvePointsRed = [
+                    [-999999 , 0], // used to create flat line
+                    [0    , 8.77], // used for low rpm / stall speeds. Remember we have a clutch. so this should be okay.
+                    [2500 , 8.77],
+                    [3000 , 8.62],
+                    [3500 , 7.88],
+                    [4000 , 6.98],
+                    [4500 , 6.10],
+                    [5000 , 5.22],
+                    [5500 , 4.54],
+                    [6000 , 3.63],
+                    [6100 , 3.63],
+                    [6110 , 0],   // used for high rpm / rev limitter
+                    [999999 , 0], // used to create flat line
+                ];
+                
+                let torqueCurve = d3.scaleLinear()
+                    .domain(
+                        torqueCurvePointsBlack.map(function(p){return p[0];})
+                    )
+                    .range (
+                        torqueCurvePointsBlack.map(function(p){return p[1];})
+                );
+
+                // Variables
+
+                let distanceTraveled = 0; // meters
+                let velocity = 0; // meters per second
+                let timeElapsed = 0; // seconds
+
+                // Functions
+
+                function CalculateRPM() {
+
+                    // calculate engine rpm from velocity
+                    let rpm = (velocity * axleGear * 60) / (2 *  Math.PI * wheelRadius * clutchGear);
+
+                    // Min RPM... We've got a clutch
+                    if(rpm < 2000) {
+                        rpm = 2000;
+                    }    
+
+                    return rpm;
+                }
+
+                function CalculateAcceleration() {
+
+                    // double check HP to Watts units... should it be watts or kilowatts
+                    // double check mass units... should it be kg or grams
+                    //let a = (axleGear * hpCurve(CalculateRPM()) * 745.7) / ( (CalculateRPM() / 60) * clutchGear * wheelRadius * (mass) );
+
+                    let gearRatio = axleGear / clutchGear;
+                    let torque = torqueCurve(CalculateRPM()) * 1.3558; // 1 HP -> 745.7 Watt
+                    let force = (torque * gearRatio) / (wheelRadius);
+                    let a = force / mass;
+
+                    return a;
+                }
+
+                function CalculateDragAcceleration() {
+
+                    let a = (dragConstant * velocity * velocity)/((mass));
+
+                    return a;
+                }
+
+                function Evaluate() {
+
+                    dataOverTime = [];
+
+                    axleGear = parseInt(document.getElementById("axleGear").value);
+                    clutchGear = parseInt(document.getElementById("clutchGear").value);
+                    mass = parseFloat(document.getElementById("mass").value);
+                    targetDistance = parseFloat(document.getElementById("distance").value);
+                    initialVelocity = parseFloat(document.getElementById("v0").value);
+                    wheelRadius = parseFloat(document.getElementById("wheelRadius").value);
+
+                    timeElapsed = 0;
+                    distanceTraveled = 0;
+
+                    velocity = initialVelocity;
+
+                    let selectedTorqueCurve = torqueCurvePointsBlack;
+                    let torqueCurveInputValue = document.getElementById("carbSlide").value;
+
+                    if(torqueCurveInputValue == "Black") {
+                        selectedTorqueCurve = torqueCurvePointsBlack;
+                    }
+
+                    if(torqueCurveInputValue == "Yellow") {
+                        selectedTorqueCurve = torqueCurvePointsYellow;
+                    }
+
+                    if(torqueCurveInputValue == "Blue") {
+                        selectedTorqueCurve = torqueCurvePointsBlue;
+                    }
+
+                    if(torqueCurveInputValue == "Green") {
+                        selectedTorqueCurve = torqueCurvePointsGreen;
+                    }
+
+                    if(torqueCurveInputValue == "Red") {
+                        selectedTorqueCurve = torqueCurvePointsRed;
+                    }
+
+                    // Select torque curve
+                    torqueCurve = d3.scaleLinear()
+                    .domain(
+                        selectedTorqueCurve.map(function(p){return p[0];})
+                    )
+                    .range (
+                        selectedTorqueCurve.map(function(p){return p[1];})
+                    );
+
+                    while(distanceTraveled < targetDistance) {
+
+                        dataOverTime.push({"time" : timeElapsed, "distance" : distanceTraveled, "speed" : velocity, "rpm" : CalculateRPM(), "power" : torqueCurve(CalculateRPM()), "acceleration" : CalculateAcceleration() * delta});
+
+                        velocity += CalculateAcceleration() * delta;
+                        velocity += CalculateDragAcceleration() * delta;
+
+                        distanceTraveled += velocity * delta;
+                        timeElapsed += delta;
+                    }
+
+                    document.getElementById('graphs').innerHTML = "";
+
+                    document.getElementById('graphs').appendChild(        
+                        Plot.plot({
+                            marks: [
+                                Plot.line(dataOverTime, {
+                                    x: "time", 
+                                    y: "rpm", 
+                                }),
+                            ],
+                        })
+                    );
+
+                    document.getElementById('graphs').appendChild(        
+                        Plot.plot({
+                            marks: [
+
+                                Plot.line(dataOverTime, {
+                                    x: "time", 
+                                    y: "speed", 
+                                }),
+
+                            ],
+                        })
+                    );
+
+                    document.getElementById('graphs').appendChild(        
+                        Plot.plot({
+                            marks: [
+                                Plot.line(dataOverTime, {
+                                    x: "time", 
+                                    y: "distance", 
+                                }),
+                            ],
+                        })
+                    );
+
+                    document.getElementById('graphs').appendChild(        
+                        Plot.plot({
+                            marks: [
+                                Plot.line(dataOverTime, {
+                                    x: "time", 
+                                    y: "acceleration", 
+                                }),
+                            ],
+                        })
+                    );
+
+                    console.log("Mass:", mass , "kg" , "| Clutch Gear:", clutchGear, "| Axle Gear:", axleGear, "| Tire Radius:", wheelRadius, "meters","| Drag Coefficent:", dragConstant, "| Initial velocity:", initialVelocity , "m/s. Or " + (initialVelocity * 3.6), "k/h");
+                    console.log("Traveled " + distanceTraveled + " meters in " + timeElapsed + " seconds. Reached speed of " + velocity + " m/s. Or " + (velocity * 3.6) + " k/h");
+                    
+                    document.getElementById("outputDistance").innerHTML = distanceTraveled.toPrecision(4) + " meters";
+                    document.getElementById("outputTime").innerHTML = timeElapsed.toPrecision(4) + " seconds";
+                    document.getElementById("outputTopSpeedMS").innerHTML =  velocity.toPrecision(4) + " m/s";
+                    document.getElementById("outputTopSpeedKH").innerHTML = (velocity * 3.6).toPrecision(4) + " k/h";
+
+                    document.getElementById("results").style.display = "block";
+                }
+
+                function DebugLine() {
+                    console.log("\n\n=========================================\n\n");
+                }
+
+                function DisplayPowerCurve() {
+                    console.log("Engine Torque Curve\n");
+                    for(let i = 2000; i < 6300; i+= 100) {
+                        console.log("RPM", i, "->", torqueCurve(i) ,"ft-pds");
+                    }
+                }
+
+                document.getElementById("evaluateButton").onclick = function() {
+                    Evaluate();
+                };
+            </script>
+	</body>
+</html>

@@ -1808,6 +1808,7 @@ input, select, textarea {
 		margin: 0 0 1em 0;
 	}
 
+	input[type="number"],
 	input[type="text"],
 	input[type="password"],
 	input[type="email"],
@@ -1828,6 +1829,7 @@ input, select, textarea {
 		width: 100%;
 	}
 
+		input[type="number"]:invalid,
 		input[type="text"]:invalid,
 		input[type="password"]:invalid,
 		input[type="email"]:invalid,
@@ -1836,6 +1838,7 @@ input, select, textarea {
 			box-shadow: none;
 		}
 
+		input[type="number"]:focus,
 		input[type="text"]:focus,
 		input[type="password"]:focus,
 		input[type="email"]:focus,
@@ -1867,6 +1870,7 @@ input, select, textarea {
 			display: none;
 		}
 
+	input[type="number"],
 	input[type="text"],
 	input[type="password"],
 	input[type="email"],
