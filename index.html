@@ -45,12 +45,12 @@
 							Instead of summerizing who I am, explore the collection of things I've worked on, designed, or created below.
 						</p>
 						<ul class="actions">
-							<li><a href="#three" class="button">Contact</a></li>
+							<li><a href="#contact" class="button">Contact</a></li>
 						</ul>
 					</section>
 
-				<!-- Two -->
-					<section id="two">
+				<!-- Content Overview -->
+					<section id="content-overview" class="active">
 						<h2>Things</h2>
 						<ul class="actions small">
 							<li><a class="button primary small" id='catagory-all-button' onclick="selectCatagory(this, 'all');">All</a></li>
@@ -60,71 +60,262 @@
 						</ul>
 						<div class="row">
 							<article class="col-6 col-12-xsmall work-item work">
-								<a href="images/thumbs/code.jpg" class="image fit thumb"><img src="images/thumbs/fixedsize/code.jpg" alt="" /></a>
-								<h3>Freelance Web & App Development</h3>
-								<p>Summer 2021 - Current</p>
+								<div class="image fit thumb" onclick="selectContent('bark-content');"><img src="images/Bark Trading & Analytics.png" alt="" /></div>
+								<h3>Bark Trading - Software Developer (Contracted)</h3>
+								<p>March 2021 - Current</p>
 							</article>
+
 							<article class="col-6 col-12-xsmall work-item work">
-								<a href="images/thumbs/uvic.jpg" class="image fit thumb"><img src="images/thumbs/fixedsize/uvic.jpg" alt="" /></a>
-								<h3>Computer Science (Major) w/ Co-op, UVic</h3>
-								<p>Fall 2017 - Current</p>
+								<div class="image fit thumb" onclick="selectContent('volt-content');"><img src="images/voltcarbontechnologies.png" alt="" /></div>
+								<h3>Volt Carbon Technologies - Website Consultant (Contracted)</h3>
+								<p>September 2020 - Current, Remote</p>
 							</article>
+
+							<article class="col-6 col-12-xsmall work-item work">
+								<div class="image fit"><img src="images/University of Victoria.png" alt="" /></div>
+								<h3>Computer Science (Major) w/ Co-op, UVic</h3>
+								<p>Fall 2017 - Finishing April 2023</p>
+							</article>
+
 							<article class="col-6 col-12-xsmall work-item projects">
-								<a href="images/thumbs/fixedsize/ai_walker.jpg" class="image fit thumb"><img src="images/thumbs/fixedsize/ai_walker.jpg" alt="" /></a>
+								<a href="http://kartcorsa.com/" target="_blank" class="image fit thumb"><img src="images/Kart Corsa.png" alt="" /></a>
+								<h3>Kart Corsa</h3>
+								<p>Kart racing video game currectly in development</p>
+							</article>
+
+							<article class="col-6 col-12-xsmall work-item projects">
+								<a href="https://track-star.net/" target="_blank" class="image fit thumb"><img src="images/Track Star.png" alt="" /></a>
+								<h3>Track Star</h3>
+								<p>Kart Racing Series Points Calculator currectly used by Vancouver Island Karting Association</p>
+							</article>
+
+							<article class="col-6 col-12-xsmall work-item projects">
+								<a href="https://simpledrummachine-45fcf.web.app/" target="_blank" class="image fit thumb"><img src="images/Simple Drum Machine.png" alt="" /></a>
+								<h3>Simple Drum Machine</h3>
+								<p>UVic project built using React and Tone.js</p>
+							</article>
+
+							<article class="col-6 col-12-xsmall work-item work">
+								<div class="image fit thumb" onclick="selectContent('freelance-content');"><img src="images/thumbs/fixedsize/code.jpg" alt="" /></div>
+								<h3>Freelance Website Development</h3>
+								<p>September 2020 - Current</p>
+							</article>
+
+							<article class="col-6 col-12-xsmall work-item projects">
+								<div class="image fit"><img src="images/thumbs/fixedsize/ai_walker.jpg" alt="" /></div>
 								<h3>Experiments: Animimation + Machine Learning</h3>
 								<p>Unity, ML Agents, PPO</p>
 							</article>
+
 							<article class="col-6 col-12-xsmall work-item projects">
-								<a href="images/thumbs/superconductor.png" class="image fit thumb"><img src="images/thumbs/fixedsize/superconductor.jpg" alt="" /></a>
-								<h3><a href="https://mnursey.itch.io/superconductor" target="_blank">Superconductor</a></h3>
+								<a href="https://mnursey.itch.io/superconductor" target="_blank" class="image fit thumb"><img src="images/thumbs/fixedsize/superconductor.jpg" alt="" /></a>
+								<h3>Superconductor</h3>
 								<p>A stylish rhythm game at the subatomic level, created for Ludum Dare 47.</p>
 							</article>
+							
 							<article class="col-6 col-12-xsmall work-item work">
-								<a href="images/thumbs/nhl2020.jpg" class="image fit thumb"><img src="images/thumbs/fixedsize/nhl2020.jpg" alt="" /></a>
+								<div class="image fit thumb" onclick="selectContent('ea-content');"><img src="images/thumbs/fixedsize/nhl2020.jpg" alt="" /></div>
 								<h3>EA: NHL 2020</h3>
 								<p>Associate Software Engineer (Co-op), Sep 2018 - Apr 2019</p>
 							</article>
+
 							<article class="col-6 col-12-xsmall work-item work">
-								<a href="images/thumbs/gan3.png" class="image fit thumb"><img src="images/thumbs/fixedsize/gan.jpg" alt="" /></a>
-								<h3><a href='https://arxiv.org/abs/2005.10957' target='_blank'>Artificial Intelligence for Histopathology</a></h3>
+								<div class="image fit thumb" onclick="selectContent('bc-cancer-content');"><img src="images/thumbs/fixedsize/gan.jpg" alt="" /></div>
+								<h3>Artificial Intelligence for Histopathology</h3>
 								<p>BC Cancer Research (Co-op), May 2019 - Feb 2020</p>
 							</article>
-							<article class="col-6 col-12-xsmall work-item projects">
-								<a href="images/thumbs/ai_car.JPG" class="image fit thumb"><img src="images/thumbs/fixedsize/carAI.jpg" alt="" /></a>
-								<h3><a href='https://youtu.be/DXUa_sDt-n4' target="_blank">Neural Network + Genetic Algorithm: Car AI</a></h3>
-								<p>Unity, Neural Networks, Genetic Algorithms</p>
+
+							<article class="col-6 col-12-xsmall work-item hobbies">
+								<div class="image fit thumb" onclick="selectContent('racing-content');"><img src="images/karting/oval0.jpg" alt="" /></div>
+								<h3>Kart Racing</h3>
+								<p>Member and volunteer of Vancouver Island Karting Association</p>
 							</article>
-							<article class="col-6 col-12-xsmall work-item projects hobbies">
-								<a href="images/thumbs/fixedsize/kart_calc_splash.jpg" class="image fit thumb"><img src="images/thumbs/fixedsize/kart_calc_splash.jpg" alt="" /></a>
-								<h3><a href="./kart-calculator.html" target="_blank">LO206 Kart Acceleration Calculator</a></h3>
+
+							<article class="col-6 col-12-xsmall work-item projects">
+								<a href="./kart-calculator.html"  target="_blank" class="image fit thumb"><img src="images/thumbs/fixedsize/kart_calc_splash.jpg" alt="" /></a>
+								<h3>LO206 Kart Acceleration Calculator</h3>
 								<p>Calculator to determine how engine gearing, setup, weight, and initial speed effect the time required to travel straight line distance.</p>
 							</article>
+							
+							<article class="col-6 col-12-xsmall work-item hobbies">
+								<div class="image fit thumb" onclick="selectContent('uvgdc-content');"><img src="images/thumbs/fixedsize/uvgdc.jpg" alt="" /></div>
+								<h3>UVic Game Dev Club (UVGDC)</h3>
+								<p>Member since 2020 </p>
+							</article>
+
 							<article class="col-6 col-12-xsmall work-item projects">
-								<a href="images/thumbs/battlesnake.jpeg" class="image fit thumb"><img src="images/thumbs/fixedsize/battlesnake.jpg" alt="" /></a>
-								<h3><a href="https://youtu.be/OYPC9fo4fE4?t=10554" target="_blank">BattleSnake 2018</a></h3>
+								<div class="image fit thumb" onclick="selectContent('battlesnake-content');"><img src="images/thumbs/fixedsize/battlesnake.jpg" alt="" /></div>
+								<h3>BattleSnake 2018 Programming Competition</h3>
 								<p>Won Second Place, Intermediate Division</p>
 							</article>
-							<article class="col-6 col-12-xsmall work-item hobbies">
-								<a href="images/thumbs/fixedsize/uvgdc.jpg" class="image fit thumb"><img src="images/thumbs/fixedsize/uvgdc.jpg" alt="" /></a>
-								<h3><a href="https://youtu.be/j_oYp9n-xcg" target="_blank">UVic Game Dev Club (UVGDC)</a></h3>
-								<p>Member since 2020, Vice President </p>
-							</article>
-							<article class="col-6 col-12-xsmall work-item hobbies">
-								<a href="images/thumbs/fixedsize/karting.jpg" class="image fit thumb"><img src="images/thumbs/fixedsize/karting.jpg" alt="" /></a>
-								<h3><a href="https://www.vika.ca/" target="_blank">Kart Racing</a></h3>
-								<p>Member of Vancouver Island Karting Association</p>
+
+							<article class="col-6 col-12-xsmall work-item projects">
+								<a href="https://youtu.be/DXUa_sDt-n4" target="_blank" class="image fit thumb"><img src="images/thumbs/fixedsize/carAI.jpg" alt="" /></a>
+								<h3>Highschool Project: Neural Network + Genetic Algorithm Car AI</h3>
+								<p>Unity, Neural Networks, Genetic Algorithms</p>
 							</article>
 						</div>
-						<!--
-						<ul class="actions">
-							<li><a href="#" class="button">Full Portfolio</a></li>
-						</ul>-->
 					</section>
 
+					<section id="racing-content" class="content">
+						<header class="major">
+							<h2>Kart Racing</h2>
+						</header>
+
+						<div class="box alt">
+							<div class="row gtr-50 gtr-uniform">
+								<div class="col-12"><span class="image fit"><img src="images/karting/332407897_1385513812281739_2467968441035280031_n.jpg" alt="" /></span></div>
+								<div class="col-4"><span class="image fit"><img src="images/karting/307513069_2175020595994880_8461612008201453937_n.jpg" alt="" /></span></div>
+								<div class="col-4"><span class="image fit"><img src="images/karting/325784332_893875608319805_4209115344100898260_n.jpg" alt="" /></span></div>
+								<div class="col-4"><span class="image fit"><img src="images/karting/oval0.jpg" alt="" /></span></div>
+							</div>
+						</div>
+						<p>
+							I am a proud member of the <a href="https://www.vika.ca/" target="_blank">Vancouver Island Karting Association</a>, where I have been volunteering my time and skills to help with the association's website, race day registration, and series points calculations. In 2022, I achieved great success in karting by winning both the Winter and Summer Senior Briggs Championships. Additionally, I placed third in the inaugural BC Regional Karting Series in the Senior Briggs category. For the upcoming 2023 season, I have decided to start racing 2-stroke karts and am excited to continue pursuing my passion for karting.
+						</p>
+
+						<ul class="actions">
+							<li><a class="button" onclick="viewContentSelector();">Close</a></li>
+						</ul>
+					</section>
+
+					<section id="uvgdc-content" class="content">
+						<header class="major">
+							<h2>UVic Game Dev Club</h2>
+						</header>
+
+						<p>
+							From 2020 to 2021, I dedicated a significant amount of my time to the UVic Game Dev Club, where I was the 2nd vice president and played an active role in running the club. Along with other members of the club, I participated in several game jams, which were exciting opportunities to work collaboratively and create new games in a short amount of time. Being a part of the UVic Game Dev Club allowed me to connect with other students who share my passion for game development and expand my skills in this area.
+
+							<br>
+							<br>
+							<a href="https://youtu.be/j_oYp9n-xcg" target="_blank">View the 2021 demo video</a>
+						</p>
+
+						<ul class="actions">
+							<li><a class="button" onclick="viewContentSelector();">Close</a></li>
+						</ul>
+					</section>
+
+					<section id="battlesnake-content" class="content">
+						<header class="major">
+							<h2>BattleSnake Programming Competition</h2>
+						</header>
+
+						<p>
+							In 2018, I participated in BattleSnake, a programming competition that took place in Victoria. I wrote an artificial intelligence using Python to compete in the competition, which featured over 50 participants in the Intermediate division. Thanks to my hard work and dedication, my AI was able to secure an impressive second-place finish in the competition, which was a significant achievement for me. Taking part in BattleSnake allowed me to showcase my programming skills and learn from other talented individuals in the field.
+							<br>
+							<br>
+							<a href="https://github.com/mnursey/b-snake" target="_blank">Github Code</a> <br>
+							<a href="https://youtu.be/OYPC9fo4fE4?t=10554" target="_blank">2018 Competition Stream</a>
+						</p>
+
+						<ul class="actions">
+							<li><a class="button" onclick="viewContentSelector();">Close</a></li>
+						</ul>
+					</section>
+
+					<section id="bc-cancer-content" class="content">
+						<header class="major">
+							<h2>Artificial Intelligence for Histopathology Co-op</h2>
+						</header>
+
+						<p>
+							During my time at BC Cancer Research, I created a customized machine learning pipeline for digital pathology using Python, Tensorflow, and Pytorch. I executed the pipeline on a Nvidia DGX machine and contributed to several academic papers. Additionally, I played a key role in the hiring process for future Co-op students, reviewing resumes, conducting interviews, and providing input for final hiring decisions.							<br>
+							<br>
+							Papers: <br>
+							<a href="https://onlinelibrary.wiley.com/doi/abs/10.1002/path.5509" target="_blank">Synthesis of diagnostic quality cancer pathology images by generative adversarial networks
+							</a> <br>
+							<a href="https://arxiv.org/abs/2005.10957" target="_blank">Classification of Epithelial Ovarian Carcinoma Whole-Slide Pathology Images Using Deep Transfer Learning
+							</a>
+							<br><br>
+							<a href="https://aimlab.ca/" target="_blank">AIM Lab @ UBC</a><br>
+
+						</p>
+
+						<ul class="actions">
+							<li><a class="button" onclick="viewContentSelector();">Close</a></li>
+						</ul>
+					</section>
+
+					<section id="ea-content" class="content">
+						<header class="major">
+							<h2>Associate Software Engineer Co-op - NHL HUT</h2>
+						</header>
+
+						<div class="box alt">
+							<div class="row gtr-50 gtr-uniform">
+								<div class="col-12"><span class="image fit"><img src="images/thumbs/fixedsize/nhl2020.jpg" alt="" /></span></div>
+							</div>
+						</div>
+
+						<p>
+							As a full stack developer at Electronic Arts, I worked on the NHL 19 and NHL 20 video games. My responsibilities included creating user interfaces, developing server backend features, and building new, specific internal tools for the Hockey Ultimate Team game mode.
+						</p>
+
+						<ul class="actions">
+							<li><a class="button" onclick="viewContentSelector();">Close</a></li>
+						</ul>
+					</section>
+
+					<section id="freelance-content" class="content">
+						<header class="major">
+							<h2>Freelance Website Development</h2>
+						</header>
+
+						<p>
+							As a freelance web developer, I provide services to local restaurants and small businesses, creating and modifying websites based on the specific needs of each client.
+						</p>
+
+						<ul class="actions">
+							<li><a class="button" onclick="viewContentSelector();">Close</a></li>
+						</ul>
+					</section>
+
+					<section id="volt-content" class="content">
+						<header class="major">
+							<h2>Volt Carbon Technologies - Website Consultant  (Contracted)</h2>
+						</header>
+
+						<div class="box alt">
+							<div class="row gtr-50 gtr-uniform">
+								<div class="col-12"><span class="image fit"><img src="images/voltcarbontechnologies.png" alt="" /></span></div>
+							</div>
+						</div>
+
+						<p>
+							At <a href="https://voltcarbontech.com/" target="_blank">Volt Carbon Technologies</a>, I collaborate with top-level management to ensure the accuracy and relevance of their website, social media accounts, and newsletters. I am responsible for setting up their websites and making necessary updates and changes to ensure that the content is current and aligned with the company's goals and objectives.						</p>
+
+						<ul class="actions">
+							<li><a class="button" onclick="viewContentSelector();">Close</a></li>
+						</ul>
+					</section>
+
+					<section id="bark-content" class="content">
+						<header class="major">
+							<h2>Bark Trading - Software Developer (Contracted)</h2>
+						</header>
+
+						<div class="box alt">
+							<div class="row gtr-50 gtr-uniform">
+								<div class="col-12"><span class="image fit"><img src="images/Bark Trading & Analytics.png" alt="" /></span></div>
+							</div>
+						</div>
+
+						<p>
+							I am part of a small and highly motivated startup team tasked with developing a lumber trading app from the ground up. Working directly with the founder, UI designer, and other key stakeholders, I played a crucial role in planning and creating the app's core features from the initial stages until its launch. As the first developer to join the project, I have been heavily involved in selecting the appropriate tech stack and software architecture.
+						
+							<br>
+							<a href="https://barktrading.com/" target="_blank">View Bark Trading's Website</a>
+						</p>
+
+						<ul class="actions">
+							<li><a class="button" onclick="viewContentSelector();">Close</a></li>
+						</ul>
+					</section>
 				<!-- Three -->
-					<section id="three">
+					<section id="contact">
 						<h2>Get In Touch</h2>
-						<!--<p>Accumsan pellentesque commodo blandit enim arcu non at amet id arcu magna. Accumsan orci faucibus id eu lorem semper nunc nisi lorem vulputate lorem neque lorem ipsum dolor.</p>-->
 						<div class="row">
 							<div class="col-8 col-12-small">
 									<div class="row gtr-uniform gtr-50">
@@ -156,325 +347,6 @@
 							</div>
 						</div>
 					</section>
-
-				<!-- Four -->
-				<!--
-					<section id="four">
-						<h2>Elements</h2>
-
-						<section>
-							<h4>Text</h4>
-							<p>This is <b>bold</b> and this is <strong>strong</strong>. This is <i>italic</i> and this is <em>emphasized</em>.
-							This is <sup>superscript</sup> text and this is <sub>subscript</sub> text.
-							This is <u>underlined</u> and this is code: <code>for (;;) { ... }</code>. Finally, <a href="#">this is a link</a>.</p>
-							<hr />
-							<header>
-								<h4>Heading with a Subtitle</h4>
-								<p>Lorem ipsum dolor sit amet nullam id egestas urna aliquam</p>
-							</header>
-							<p>Nunc lacinia ante nunc ac lobortis. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus ornare mi ut ante amet placerat aliquet. Volutpat eu sed ante lacinia sapien lorem accumsan varius montes viverra nibh in adipiscing blandit tempus accumsan.</p>
-							<header>
-								<h5>Heading with a Subtitle</h5>
-								<p>Lorem ipsum dolor sit amet nullam id egestas urna aliquam</p>
-							</header>
-							<p>Nunc lacinia ante nunc ac lobortis. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus ornare mi ut ante amet placerat aliquet. Volutpat eu sed ante lacinia sapien lorem accumsan varius montes viverra nibh in adipiscing blandit tempus accumsan.</p>
-							<hr />
-							<h2>Heading Level 2</h2>
-							<h3>Heading Level 3</h3>
-							<h4>Heading Level 4</h4>
-							<h5>Heading Level 5</h5>
-							<h6>Heading Level 6</h6>
-							<hr />
-							<h5>Blockquote</h5>
-							<blockquote>Fringilla nisl. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan faucibus. Vestibulum ante ipsum primis in faucibus lorem ipsum dolor sit amet nullam adipiscing eu felis.</blockquote>
-							<h5>Preformatted</h5>
-							<pre><code>i = 0;
-
-while (!deck.isInOrder()) {
-print 'Iteration ' + i;
-deck.shuffle();
-i++;
-}
-
-print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
-						</section>
-
-						<section>
-							<h4>Lists</h4>
-							<div class="row">
-								<div class="col-6 col-12-xsmall">
-									<h5>Unordered</h5>
-									<ul>
-										<li>Dolor pulvinar etiam magna etiam.</li>
-										<li>Sagittis adipiscing lorem eleifend.</li>
-										<li>Felis enim feugiat dolore viverra.</li>
-									</ul>
-									<h5>Alternate</h5>
-									<ul class="alt">
-										<li>Dolor pulvinar etiam magna etiam.</li>
-										<li>Sagittis adipiscing lorem eleifend.</li>
-										<li>Felis enim feugiat dolore viverra.</li>
-									</ul>
-								</div>
-								<div class="col-6 col-12-xsmall">
-									<h5>Ordered</h5>
-									<ol>
-										<li>Dolor pulvinar etiam magna etiam.</li>
-										<li>Etiam vel felis at lorem sed viverra.</li>
-										<li>Felis enim feugiat dolore viverra.</li>
-										<li>Dolor pulvinar etiam magna etiam.</li>
-										<li>Etiam vel felis at lorem sed viverra.</li>
-										<li>Felis enim feugiat dolore viverra.</li>
-									</ol>
-									<h5>Icons</h5>
-									<ul class="icons">
-										<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-										<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-										<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-										<li><a href="#" class="icon brands fa-github"><span class="label">Github</span></a></li>
-										<li><a href="#" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a></li>
-										<li><a href="#" class="icon brands fa-tumblr"><span class="label">Tumblr</span></a></li>
-									</ul>
-								</div>
-							</div>
-							<h5>Actions</h5>
-							<ul class="actions">
-								<li><a href="#" class="button primary">Default</a></li>
-								<li><a href="#" class="button">Default</a></li>
-							</ul>
-							<ul class="actions small">
-								<li><a href="#" class="button primary small">Small</a></li>
-								<li><a href="#" class="button small">Small</a></li>
-							</ul>
-							<div class="row">
-								<div class="col-6 col-12-small">
-									<ul class="actions stacked">
-										<li><a href="#" class="button primary">Default</a></li>
-										<li><a href="#" class="button">Default</a></li>
-									</ul>
-								</div>
-								<div class="col-6 col-12-small">
-									<ul class="actions stacked">
-										<li><a href="#" class="button primary small">Small</a></li>
-										<li><a href="#" class="button small">Small</a></li>
-									</ul>
-								</div>
-								<div class="col-6 col-12-small">
-									<ul class="actions stacked">
-										<li><a href="#" class="button primary fit">Default</a></li>
-										<li><a href="#" class="button fit">Default</a></li>
-									</ul>
-								</div>
-								<div class="col-6 col-12-small">
-									<ul class="actions stacked">
-										<li><a href="#" class="button primary small fit">Small</a></li>
-										<li><a href="#" class="button small fit">Small</a></li>
-									</ul>
-								</div>
-							</div>
-						</section>
-
-						<section>
-							<h4>Table</h4>
-							<h5>Default</h5>
-							<div class="table-wrapper">
-								<table>
-									<thead>
-										<tr>
-											<th>Name</th>
-											<th>Description</th>
-											<th>Price</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td>Item One</td>
-											<td>Ante turpis integer aliquet porttitor.</td>
-											<td>29.99</td>
-										</tr>
-										<tr>
-											<td>Item Two</td>
-											<td>Vis ac commodo adipiscing arcu aliquet.</td>
-											<td>19.99</td>
-										</tr>
-										<tr>
-											<td>Item Three</td>
-											<td> Morbi faucibus arcu accumsan lorem.</td>
-											<td>29.99</td>
-										</tr>
-										<tr>
-											<td>Item Four</td>
-											<td>Vitae integer tempus condimentum.</td>
-											<td>19.99</td>
-										</tr>
-										<tr>
-											<td>Item Five</td>
-											<td>Ante turpis integer aliquet porttitor.</td>
-											<td>29.99</td>
-										</tr>
-									</tbody>
-									<tfoot>
-										<tr>
-											<td colspan="2"></td>
-											<td>100.00</td>
-										</tr>
-									</tfoot>
-								</table>
-							</div>
-
-							<h5>Alternate</h5>
-							<div class="table-wrapper">
-								<table class="alt">
-									<thead>
-										<tr>
-											<th>Name</th>
-											<th>Description</th>
-											<th>Price</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td>Item One</td>
-											<td>Ante turpis integer aliquet porttitor.</td>
-											<td>29.99</td>
-										</tr>
-										<tr>
-											<td>Item Two</td>
-											<td>Vis ac commodo adipiscing arcu aliquet.</td>
-											<td>19.99</td>
-										</tr>
-										<tr>
-											<td>Item Three</td>
-											<td> Morbi faucibus arcu accumsan lorem.</td>
-											<td>29.99</td>
-										</tr>
-										<tr>
-											<td>Item Four</td>
-											<td>Vitae integer tempus condimentum.</td>
-											<td>19.99</td>
-										</tr>
-										<tr>
-											<td>Item Five</td>
-											<td>Ante turpis integer aliquet porttitor.</td>
-											<td>29.99</td>
-										</tr>
-									</tbody>
-									<tfoot>
-										<tr>
-											<td colspan="2"></td>
-											<td>100.00</td>
-										</tr>
-									</tfoot>
-								</table>
-							</div>
-						</section>
-
-						<section>
-							<h4>Buttons</h4>
-							<ul class="actions">
-								<li><a href="#" class="button primary">Primary</a></li>
-								<li><a href="#" class="button">Default</a></li>
-							</ul>
-							<ul class="actions">
-								<li><a href="#" class="button large">Large</a></li>
-								<li><a href="#" class="button">Default</a></li>
-								<li><a href="#" class="button small">Small</a></li>
-							</ul>
-							<ul class="actions fit">
-								<li><a href="#" class="button primary fit">Fit</a></li>
-								<li><a href="#" class="button fit">Fit</a></li>
-							</ul>
-							<ul class="actions fit small">
-								<li><a href="#" class="button primary fit small">Fit + Small</a></li>
-								<li><a href="#" class="button fit small">Fit + Small</a></li>
-							</ul>
-							<ul class="actions">
-								<li><a href="#" class="button primary icon solid fa-download">Icon</a></li>
-								<li><a href="#" class="button icon solid fa-download">Icon</a></li>
-							</ul>
-							<ul class="actions">
-								<li><span class="button primary disabled">Primary</span></li>
-								<li><span class="button disabled">Default</span></li>
-							</ul>
-						</section>
-
-						<section>
-							<h4>Form</h4>
-							<form method="post" action="#">
-								<div class="row gtr-uniform gtr-50">
-									<div class="col-6 col-12-xsmall">
-										<input type="text" name="demo-name" id="demo-name" value="" placeholder="Name" />
-									</div>
-									<div class="col-6 col-12-xsmall">
-										<input type="email" name="demo-email" id="demo-email" value="" placeholder="Email" />
-									</div>
-									<div class="col-12">
-										<select name="demo-category" id="demo-category">
-											<option value="">- Category -</option>
-											<option value="1">Manufacturing</option>
-											<option value="1">Shipping</option>
-											<option value="1">Administration</option>
-											<option value="1">Human Resources</option>
-										</select>
-									</div>
-									<div class="col-4 col-12-small">
-										<input type="radio" id="demo-priority-low" name="demo-priority" checked>
-										<label for="demo-priority-low">Low Priority</label>
-									</div>
-									<div class="col-4 col-12-small">
-										<input type="radio" id="demo-priority-normal" name="demo-priority">
-										<label for="demo-priority-normal">Normal Priority</label>
-									</div>
-									<div class="col-4 col-12-small">
-										<input type="radio" id="demo-priority-high" name="demo-priority">
-										<label for="demo-priority-high">High Priority</label>
-									</div>
-									<div class="col-6 col-12-small">
-										<input type="checkbox" id="demo-copy" name="demo-copy">
-										<label for="demo-copy">Email me a copy of this message</label>
-									</div>
-									<div class="col-6 col-12-small">
-										<input type="checkbox" id="demo-human" name="demo-human" checked>
-										<label for="demo-human">I am a human and not a robot</label>
-									</div>
-									<div class="col-12">
-										<textarea name="demo-message" id="demo-message" placeholder="Enter your message" rows="6"></textarea>
-									</div>
-									<div class="col-12">
-										<ul class="actions">
-											<li><input type="submit" value="Send Message" class="primary" /></li>
-											<li><input type="reset" value="Reset" /></li>
-										</ul>
-									</div>
-								</div>
-							</form>
-						</section>
-
-						<section>
-							<h4>Image</h4>
-							<h5>Fit</h5>
-							<div class="box alt">
-								<div class="row gtr-50 gtr-uniform">
-									<div class="col-12"><span class="image fit"><img src="images/fulls/05.jpg" alt="" /></span></div>
-									<div class="col-4"><span class="image fit"><img src="images/thumbs/01.jpg" alt="" /></span></div>
-									<div class="col-4"><span class="image fit"><img src="images/thumbs/02.jpg" alt="" /></span></div>
-									<div class="col-4"><span class="image fit"><img src="images/thumbs/03.jpg" alt="" /></span></div>
-									<div class="col-4"><span class="image fit"><img src="images/thumbs/04.jpg" alt="" /></span></div>
-									<div class="col-4"><span class="image fit"><img src="images/thumbs/05.jpg" alt="" /></span></div>
-									<div class="col-4"><span class="image fit"><img src="images/thumbs/06.jpg" alt="" /></span></div>
-									<div class="col-4"><span class="image fit"><img src="images/thumbs/03.jpg" alt="" /></span></div>
-									<div class="col-4"><span class="image fit"><img src="images/thumbs/02.jpg" alt="" /></span></div>
-									<div class="col-4"><span class="image fit"><img src="images/thumbs/01.jpg" alt="" /></span></div>
-								</div>
-							</div>
-							<h5>Left &amp; Right</h5>
-							<p><span class="image left"><img src="images/avatar.jpg" alt="" /></span>Fringilla nisl. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent.</p>
-							<p><span class="image right"><img src="images/avatar.jpg" alt="" /></span>Fringilla nisl. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent.</p>
-						</section>
-
-					</section>-->
-				
-
 			</div>
 
 		<!-- Footer -->
@@ -483,7 +355,6 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 					<ul class="icons">
 						<li><a href="https://twitter.com/mitchnursey" class="icon brands fa-twitter" target="_blank"><span class="label">Twitter</span></a></li>
 						<li><a href="https://github.com/mnursey" class="icon brands fa-github" target="_blank"><span class="label">Github</span></a></li>
-						<!--<li><a href="#" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a></li>-->
 						<li><a href="mailto:mitchnursey@gmail.com" class="icon solid fa-envelope" target="_blank"><span class="label">Email</span></a></li>
 					</ul>
 					<ul class="copyright">
@@ -494,7 +365,6 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 
 		<!-- Scripts -->
 			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.poptrox.min.js"></script>
 			<script src="assets/js/browser.min.js"></script>
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
@@ -515,9 +385,6 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 			<script>
 
 				// Import the functions you need from the SDKs you need
-				//import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
-				//import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-analytics.js";
-				//import { firestore } from "https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js";
 
 				// TODO: Add SDKs for Firebase products that you want to use
 				// https://firebase.google.com/docs/web/setup#available-libraries
@@ -540,11 +407,6 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 				const auth = firebase.auth();
 				const db = firebase.firestore();
 
-				// Initialize Firebase
-				//const app = initializeApp(firebaseConfig);
-				//const analytics = getAnalytics(app);
-       			//const db = firestore(app);
-
 				var currentSelectedButton = document.getElementById('catagory-all-button');
 
 				function selectCatagory(pressedButton, catagory) {
@@ -566,6 +428,24 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 					for(let i = 0; i < selectedItems.length; i++) {
 						selectedItems[i].style.display = 'block';
 					}
+				}
+
+				viewContentSelector();
+
+				function viewContentSelector() {
+					selectContent('content-overview');
+				}
+
+				function selectContent(contentID) {
+					let allContent = document.getElementsByClassName('content');
+					let selectedContent = document.getElementById(contentID);
+
+					for(let i = 0; i < allContent.length; i++) {
+						allContent[i].style.display = 'none';
+					}
+
+					selectedContent.style.display = 'block';
+					selectedContent.scrollIntoView();
 				}
 
 				function sendContactMessage() {
