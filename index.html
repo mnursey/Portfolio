@@ -95,6 +95,12 @@
 								<h3>Simple Drum Machine</h3>
 								<p>UVic project built using React and Tone.js</p>
 							</article>
+							
+							<article class="col-6 col-12-xsmall work-item projects">
+								<div class="image fit thumb" onclick="selectContent('boids-content');"><img src="images/Boids.png" alt="" /></div>
+								<h3>Boids</h3>
+								<p>An implementation of Boids using Three.js</p>
+							</article>
 
 							<article class="col-6 col-12-xsmall work-item work">
 								<div class="image fit thumb" onclick="selectContent('freelance-content');"><img src="images/thumbs/fixedsize/code.jpg" alt="" /></div>
@@ -525,6 +531,28 @@
 									</tbody>
 								</table>
 							</div>
+						</p>
+
+						<ul class="actions">
+							<li><a class="button" onclick="viewContentSelector();">Close</a></li>
+						</ul>
+					</section>
+
+					<section id="boids-content" class="content">
+						<header class="major">
+							<h2>Boids</h2>
+						</header>
+
+						<p>
+							I built this project using Three.js, a JavaScript library, and based my boids on <a href="https://vanhunteradams.com/Pico/Animal_Movement/Boids-algorithm.html" target="_blank">V. Hunter Adams' implementation</a>. 
+							It was my first time using Three.js, and I was impressed by how easy and intuitive it was to use. I'm definitely planning on using it for future projects.
+							<br/>							
+							<br/>
+							In case you're not familiar, boids are a type of artificial life program that simulate the behavior of flocks of birds or schools of fish. They're made up of simple rules, like alignment with nearby boids, avoidance of collisions, and attraction to the center of mass of nearby boids, that create the illusion of coordinated group movement.
+							<br/>
+							<br/>
+							<a href="https://boids-mnursey.web.app/" target="_blank">View Project</a> <br/>
+							<a href="https://github.com/mnursey/Boids-ThreeJS" target="_blank">View Project Github</a>
 						</p>
 
 						<ul class="actions">
